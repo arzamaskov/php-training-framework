@@ -19,7 +19,7 @@ class Router
     protected static $route = [];
 
     /**
-     * add.
+     * Add route into the table of routes.
      *
      * @param string $regexp Regular expression
      * @param array  $route  route that correspond to URL
