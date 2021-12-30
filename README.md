@@ -2,7 +2,7 @@
 
 ## Structure
 
-```
+```sh
 ├── README.md
 ├── app
 │   ├── controllers
