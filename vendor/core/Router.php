@@ -50,4 +50,27 @@ class Router
     {
         return self::$route;
     }
+
+    /**
+     * Matches URL string to regular expression to get route including
+     * controller and action. Etc., URL `posts/view` gets following route:
+     * Controller - Posts, action - view.
+     * Then fill property $route with getting route.
+     *
+     * @param mixed $url
+     *
+     * @return void
+     */
+    public static function matchRoute($url)
+    {
+        foreach (self::$routes as $pattern => $route) {
+            if ($pattern == $url) {
+                self::$route = $route;
+
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
