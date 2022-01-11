@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 error_reporting(-1);
 
+define('WWW', __DIR__);
+define('CORE', dirname(__DIR__) . '/vendor/core');
+define('ROOT', dirname(__DIR__));
+define('APP', dirname(__DIR__) . '/app');
+
 $query = rtrim($_SERVER['QUERY_STRING'], '/');
 
 require_once '../vendor/core/Router.php';
