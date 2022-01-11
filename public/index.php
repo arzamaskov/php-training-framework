@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 $query = rtrim($_SERVER['QUERY_STRING'], '/');
 
 require_once '../vendor/core/Router.php';
