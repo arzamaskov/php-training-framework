@@ -10,12 +10,8 @@ require_once '../vendor/core/Router.php';
 require_once '../vendor/libs/functions.php';
 
 Router::add('^$', ['controller' => 'Main', 'action' => 'index']);
-Router::add('([a-z-]+)/([a-z-]+)');
+Router::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
 
 debug(Router::getRoutes());
 
-if (Router::matchRoute($query)) {
-    debug(Router::getRoute());
-} else {
-    echo '404';
-}
+Router::dispatch($query);
