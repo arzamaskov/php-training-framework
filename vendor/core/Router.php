@@ -84,17 +84,40 @@ class Router
     public static function dispatch(string $url): void
     {
         if (self::matchRoute($url)) {
-            $controller = self::$route['controller'];
+            $controller = self::upperCamelCase(self::$route['controller']);
 
             if (class_exists($controller)) {
-                echo "Class <b>$controller</b> was included";
+                $controllerObject = new $controller();
+                $action = self::lowerCamelCase(self::$route['action']);
+                $action = "{$action}Action";
+
+                if (method_exists($controllerObject, $action)) {
+                    $controllerObject->$action();
+                } else {
+                    echo "Method <b>$controller::$action</b> not found";
+                }
             } else {
                 echo "Controller <b>$controller</b> not found";
             }
-            debug(self::$route);
         } else {
             http_response_code(404);
             include '404.html';
         }
+    }
+
+    /**
+     * Converts the name to the CamelCase style.
+     */
+    protected static function upperCamelCase(string $name): string
+    {
+        return str_replace(' ', '', ucwords(str_replace('-', ' ', $name)));
+    }
+
+    /**
+     * Converts the name to the CamelCase style with lower first letter.
+     */
+    protected static function lowerCamelCase(string $name): string
+    {
+        return lcfirst(self::upperCamelCase($name));
     }
 }
