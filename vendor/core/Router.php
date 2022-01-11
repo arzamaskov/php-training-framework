@@ -53,7 +53,7 @@ class Router
      *
      * @param mixed $url
      */
-    public static function matchRoute(string $url): bool
+    private static function matchRoute(string $url): bool
     {
         foreach (self::$routes as $pattern => $route) {
             if (preg_match("#$pattern#i", $url, $matches)) {
